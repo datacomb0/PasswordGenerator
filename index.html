@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta
+        name="description"
+        content="Generate secure random passwords and estimate brute-force attack time."
+    >
+
+    <meta name="theme-color" content="#030711">
+
+    <title>Safe Password Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Ambient background -->
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <div class="grid-overlay" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <!-- Loading screen -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <div class="loader-symbol">[//]</div>
+            <div class="loader-title">SAFE PASS<span>//</span>GENERATOR</div>
+            <div class="loader-status" id="loaderStatus">
+                INITIALIZING SECURITY CORE...
+            </div>
+            <div class="loader-bar">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <main class="app">
+
+        <!-- Header -->
+        <header class="site-header">
+
+            <div class="brand">
+                <div class="brand-mark" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div>
+                    <div class="brand-name">
+                        PASSWORD<span> </span>GENERATOR
+                    </div>
+
+                    <div class="brand-subtitle">
+                        RANDOM PASSWORD SECURITY ENGINE
+                    </div>
+                </div>
+            </div>
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                <span>CLIENT-SIDE</span>
+                <span class="status-separator">/</span>
+                <span>SECURE</span>
+            </div>
+
+        </header>
+
+
+        <!-- Main content -->
+        <section class="hero">
+
+            <div class="hero-label">
+                <span class="terminal-symbol">></span>
+                PASSWORD GENERATION PROTOCOL
+            </div>
+
+            <h1>
+                Safe
+                <span>Passwords</span>
+                Generation.
+            </h1>
+
+            <p class="hero-description">
+                Generate cryptographically strong random passwords and
+                estimate how long a brute-force attack would require to
+                discover them.
+            </p>
+
+        </section>
+
+
+        <section class="workspace">
+
+            <!-- Generator panel -->
+            <section class="panel generator-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <div class="panel-index">01 / GENERATOR</div>
+                        <h2>Password Generator</h2>
+                    </div>
+
+                    <div class="panel-indicator">
+                        <span></span>
+                        READY
+                    </div>
+                </div>
+
+
+                <!-- Password output -->
+                <div class="password-output">
+
+                    <div class="output-label">
+                        GENERATED PASSWORD
+                    </div>
+
+                    <div class="password-row">
+
+                        <output
+                            id="passwordOutput"
+                            class="password-value"
+                            aria-live="polite"
+                        >
+                            v7$Qm2!xR9@Lp4#Z
+                        </output>
+
+                        <button
+                            type="button"
+                            id="copyButton"
+                            class="icon-button"
+                            aria-label="Copy password"
+                        >
+                            <span class="copy-icon">⧉</span>
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="copy-feedback"
+                        id="copyFeedback"
+                        aria-live="polite"
+                    ></div>
+
+                </div>
+
+
+                <!-- Length -->
+                <div class="control-group">
+
+                    <div class="control-heading">
+                        <label for="lengthRange">
+                            PASSWORD LENGTH
+                        </label>
+
+                        <output id="lengthValue" class="value-display">
+                            16
+                        </output>
+                    </div>
+
+                    <div class="range-wrapper">
+
+                        <span class="range-min">4</span>
+
+                        <input
+                            type="range"
+                            id="lengthRange"
+                            min="4"
+                            max="50"
+                            value="16"
+                            step="1"
+                        >
+
+                        <span class="range-max">50</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Character options -->
+                <div class="control-group">
+
+                    <div class="control-heading">
+                        <span>CHARACTER TYPES</span>
+                        <span class="control-hint">
+                            SELECT ANY
+                        </span>
+                    </div>
+
+                    <div class="character-grid">
+
+                        <label class="toggle-option">
+                            <input
+                                type="checkbox"
+                                id="lowercase"
+                                checked
+                            >
+
+                            <span class="toggle-box">
+                                <span class="toggle-check">✓</span>
+                            </span>
+
+                            <span class="option-content">
+                                <strong>Lowercase</strong>
+                                <small>a — z</small>
+                            </span>
+                        </label>
+
+
+                        <label class="toggle-option">
+                            <input
+                                type="checkbox"
+                                id="uppercase"
+                                checked
+                            >
+
+                            <span class="toggle-box">
+                                <span class="toggle-check">✓</span>
+                            </span>
+
+                            <span class="option-content">
+                                <strong>Uppercase</strong>
+                                <small>A — Z</small>
+                            </span>
+                        </label>
+
+
+                        <label class="toggle-option">
+                            <input
+                                type="checkbox"
+                                id="numbers"
+                                checked
+                            >
+
+                            <span class="toggle-box">
+                                <span class="toggle-check">✓</span>
+                            </span>
+
+                            <span class="option-content">
+                                <strong>Numbers</strong>
+                                <small>0 — 9</small>
+                            </span>
+                        </label>
+
+
+                        <label class="toggle-option">
+                            <input
+                                type="checkbox"
+                                id="symbols"
+                                checked
+                            >
+
+                            <span class="toggle-box">
+                                <span class="toggle-check">✓</span>
+                            </span>
+
+                            <span class="option-content">
+                                <strong>Symbols</strong>
+                                <small>! @ # $ %</small>
+                            </span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Guarantee one of each -->
+                <label class="guarantee-option">
+
+                    <input
+                        type="checkbox"
+                        id="guaranteeTypes"
+                        checked
+                    >
+
+                    <span class="custom-checkbox"></span>
+
+                    <span>
+                        Include at least one character from each selected type
+                    </span>
+
+                </label>
+
+
+                <!-- Generate -->
+                <button
+                    type="button"
+                    id="generateButton"
+                    class="generate-button"
+                >
+                    <span class="button-prefix">[</span>
+                    GENERATE PASSWORD
+                    <span class="button-suffix">]</span>
+                </button>
+
+
+                <div class="generator-note">
+                    <span>◆</span>
+                    Generated locally in your browser.
+                    Passwords are never transmitted.
+                </div>
+
+            </section>
+
+
+            <!-- Analysis panel -->
+            <section class="panel analysis-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <div class="panel-index">02 / ANALYSIS</div>
+                        <h2>Security Analysis</h2>
+                    </div>
+
+                    <div class="analysis-state" id="analysisState">
+                        CALCULATING
+                    </div>
+                </div>
+
+
+                <!-- Strength -->
+                <div class="strength-section">
+
+                    <div class="strength-header">
+                        <span>SECURITY STRENGTH</span>
+                        <strong id="strengthLabel">EXTREME</strong>
+                    </div>
+
+                    <div class="strength-meter">
+                        <span id="strengthMeter"></span>
+                    </div>
+
+                    <div class="strength-description" id="strengthDescription">
+                        Extremely strong password.
+                    </div>
+
+                </div>
+
+
+                <!-- Stats -->
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <span class="stat-label">CHARACTERS</span>
+                        <strong id="statLength">16</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-label">CHARACTER POOL</span>
+                        <strong id="statPool">94</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-label">ENTROPY</span>
+                        <strong id="statEntropy">104.8 bits</strong>
+                    </div>
+
+                    <div class="stat-card stat-wide">
+                        <span class="stat-label">
+                            POSSIBLE COMBINATIONS
+                        </span>
+
+                        <strong id="statCombinations">
+                            3.3 × 10²⁹
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- Brute force -->
+                <div class="bruteforce-section">
+
+                    <div class="section-title">
+                        <span class="section-number">03</span>
+                        BRUTE-FORCE ESTIMATE
+                    </div>
+
+
+                    <div class="attack-model">
+
+                        <div>
+                            <span>ATTACK MODEL</span>
+                            <strong>OFFLINE / HIGH SPEED</strong>
+                        </div>
+
+                        <div>
+                            <span>GUESSES / SECOND</span>
+                            <strong id="guessRateDisplay">
+                                1 TRILLION
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="time-card">
+
+                        <div class="time-row">
+
+                            <div>
+                                <span class="time-label">
+                                    AVERAGE TIME
+                                </span>
+
+                                <strong
+                                    id="averageTime"
+                                    class="time-value"
+                                >
+                                    5.3 BILLION YEARS
+                                </strong>
+                            </div>
+
+                            <div class="time-icon">
+                                ◈
+                            </div>
+
+                        </div>
+
+
+                        <div class="time-divider"></div>
+
+
+                        <div class="time-row">
+
+                            <div>
+                                <span class="time-label">
+                                    WORST CASE
+                                </span>
+
+                                <strong
+                                    id="worstTime"
+                                    class="time-value"
+                                >
+                                    10.6 BILLION YEARS
+                                </strong>
+                            </div>
+
+                            <div class="time-icon">
+                                ◇
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="attack-note">
+                        <span class="warning-icon">!</span>
+
+                        Estimates represent theoretical exhaustive
+                        brute-force attacks. Real-world attacks can differ
+                        depending on hashing algorithms, hardware,
+                        leaked passwords and attack strategy.
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="site-footer">
+
+            <div>
+                PASSWORD<span>//</span>GENERATOR
+                <span class="footer-separator">|</span>
+                ZERO SERVER STORAGE
+            </div>
+
+            <div>
+                <span class="footer-dot"></span>
+                LOCAL EXECUTION
+            </div>
+
+        </footer>
+
+    </main>
+
+
+    <noscript>
+        <div class="noscript-message">
+            JavaScript is required for Pass Generator to generate and analyze
+            passwords.
+        </div>
+    </noscript>
+
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>

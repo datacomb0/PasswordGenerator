@@ -1,0 +1,2049 @@
+/* ==========================================================================
+   CRYPT//GEN
+   Cyberpunk Password Security Generator
+   Dark blue / near-black / ambient security terminal
+   ========================================================================== */
+
+
+/* ==========================================================================
+   RESET
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    min-width: 320px;
+    background: #030711;
+    color-scheme: dark;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(0, 80, 150, 0.13),
+            transparent 45%
+        ),
+        #030711;
+
+    color: #dcecff;
+
+    font-family:
+        "Segoe UI",
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+
+    overflow-x: hidden;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    border: 0;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid #2f9cff;
+    outline-offset: 3px;
+}
+
+
+/* ==========================================================================
+   AMBIENT BACKGROUND
+   ========================================================================== */
+
+.ambient {
+    position: fixed;
+    z-index: -4;
+
+    width: 55vw;
+    height: 55vw;
+
+    max-width: 850px;
+    max-height: 850px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    opacity: 0.22;
+
+    filter: blur(90px);
+
+    will-change: transform, opacity;
+
+    animation:
+        ambientBreathing 12s ease-in-out infinite;
+}
+
+.ambient-one {
+    top: -25%;
+    left: -10%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 105, 255, 0.55),
+            transparent 68%
+        );
+}
+
+.ambient-two {
+    right: -15%;
+    bottom: -30%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 50, 130, 0.55),
+            transparent 68%
+        );
+
+    animation-delay: -6s;
+    animation-duration: 15s;
+}
+
+@keyframes ambientBreathing {
+
+    0%,
+    100% {
+        transform: scale(0.95) translate3d(0, 0, 0);
+        opacity: 0.16;
+    }
+
+    50% {
+        transform: scale(1.08) translate3d(2%, -2%, 0);
+        opacity: 0.27;
+    }
+}
+
+
+/* ==========================================================================
+   CYBER GRID
+   ========================================================================== */
+
+.grid-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: -3;
+
+    pointer-events: none;
+
+    opacity: 0.16;
+
+    background-image:
+        linear-gradient(
+            rgba(45, 110, 180, 0.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(45, 110, 180, 0.08) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        42px 42px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
+}
+
+
+/* ==========================================================================
+   SCANLINES
+   ========================================================================== */
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+
+    z-index: 50;
+
+    pointer-events: none;
+
+    opacity: 0.035;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 3px,
+            rgba(150, 210, 255, 0.12) 4px
+        );
+}
+
+
+/* ==========================================================================
+   LOADER
+   ========================================================================== */
+
+.loader {
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    display: grid;
+    place-items: center;
+
+    background: #02050c;
+
+    transition:
+        opacity 500ms ease,
+        visibility 500ms ease;
+}
+
+.loader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-inner {
+    width: min(420px, calc(100% - 48px));
+
+    text-align: center;
+}
+
+.loader-symbol {
+    margin-bottom: 20px;
+
+    color: #39a7ff;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 30px;
+
+    letter-spacing: 5px;
+
+    text-shadow:
+        0 0 12px rgba(40, 150, 255, 0.7);
+}
+
+.loader-title {
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: clamp(24px, 7vw, 40px);
+
+    font-weight: 800;
+
+    letter-spacing: 5px;
+
+    color: #edf7ff;
+}
+
+.loader-title span,
+.brand-name span,
+.site-footer span {
+    color: #218fff;
+}
+
+.loader-status {
+    margin-top: 14px;
+
+    color: #6383a4;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+}
+
+.loader-bar {
+    position: relative;
+
+    height: 2px;
+
+    margin-top: 25px;
+
+    overflow: hidden;
+
+    background: #102033;
+}
+
+.loader-bar span {
+    position: absolute;
+    inset: 0;
+
+    width: 35%;
+
+    background: #248fff;
+
+    box-shadow:
+        0 0 14px rgba(36, 143, 255, 0.8);
+
+    animation: loadingBar 1.1s ease-in-out infinite;
+}
+
+@keyframes loadingBar {
+    0% {
+        transform: translateX(-120%);
+    }
+
+    100% {
+        transform: translateX(350%);
+    }
+}
+
+
+/* ==========================================================================
+   APPLICATION
+   ========================================================================== */
+
+.app {
+    position: relative;
+
+    width: min(1380px, calc(100% - 48px));
+
+    margin-inline: auto;
+
+    padding:
+        28px
+        0
+        36px;
+}
+
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+.site-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding-bottom: 30px;
+
+    border-bottom:
+        1px solid rgba(75, 130, 180, 0.16);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+}
+
+.brand-mark {
+    position: relative;
+
+    display: flex;
+    align-items: flex-end;
+
+    gap: 3px;
+
+    width: 30px;
+    height: 30px;
+
+    padding: 4px;
+
+    border:
+        1px solid rgba(44, 150, 255, 0.6);
+
+    background:
+        rgba(5, 25, 48, 0.7);
+
+    box-shadow:
+        inset 0 0 15px rgba(0, 120, 255, 0.08),
+        0 0 15px rgba(0, 100, 255, 0.1);
+}
+
+.brand-mark span {
+    display: block;
+
+    width: 4px;
+
+    background: #218fff;
+
+    box-shadow:
+        0 0 8px rgba(33, 143, 255, 0.7);
+}
+
+.brand-mark span:nth-child(1) {
+    height: 40%;
+}
+
+.brand-mark span:nth-child(2) {
+    height: 70%;
+}
+
+.brand-mark span:nth-child(3) {
+    height: 100%;
+}
+
+.brand-name {
+    color: #eaf6ff;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.brand-subtitle {
+    margin-top: 4px;
+
+    color: #4e6d8e;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 1.2px;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #55718f;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 1.2px;
+}
+
+.status-dot,
+.footer-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #1da4ff;
+
+    box-shadow:
+        0 0 8px rgba(29, 164, 255, 0.9);
+
+    animation: statusPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.status-separator {
+    color: #263d54 !important;
+}
+
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.hero {
+    max-width: 850px;
+
+    padding:
+        clamp(58px, 9vw, 110px)
+        0
+        clamp(42px, 6vw, 70px);
+}
+
+.hero-label {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 17px;
+
+    color: #438bc2;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.terminal-symbol {
+    color: #2498ff;
+
+    text-shadow:
+        0 0 10px rgba(36, 152, 255, 0.8);
+}
+
+.hero h1 {
+    margin: 0;
+
+    color: #edf7ff;
+
+    font-size:
+        clamp(
+            42px,
+            7vw,
+            82px
+        );
+
+    line-height: 0.98;
+
+    letter-spacing: -3px;
+
+    font-weight: 800;
+}
+
+.hero h1 span {
+    color: #268fff;
+
+    text-shadow:
+        0 0 35px rgba(38, 143, 255, 0.17);
+}
+
+.hero-description {
+    max-width: 650px;
+
+    margin: 25px 0 0;
+
+    color: #6884a1;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================================================
+   WORKSPACE
+   ========================================================================== */
+
+.workspace {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 20px;
+
+    align-items: start;
+}
+
+
+/* ==========================================================================
+   PANELS
+   ========================================================================== */
+
+.panel {
+    position: relative;
+
+    min-width: 0;
+
+    padding: clamp(22px, 3vw, 34px);
+
+    border:
+        1px solid rgba(54, 116, 169, 0.24);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(8, 20, 35, 0.94),
+            rgba(3, 10, 20, 0.96)
+        );
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(130, 200, 255, 0.025);
+
+    overflow: hidden;
+}
+
+.panel::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 70px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #258fff,
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px rgba(37, 143, 255, 0.5);
+}
+
+.panel::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    width: 65px;
+    height: 65px;
+
+    border-right:
+        1px solid rgba(40, 143, 255, 0.22);
+
+    border-bottom:
+        1px solid rgba(40, 143, 255, 0.22);
+
+    pointer-events: none;
+}
+
+.panel-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.panel-index {
+    margin-bottom: 7px;
+
+    color: #2b8bc9;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.panel h2 {
+    margin: 0;
+
+    color: #dceeff;
+
+    font-size: 22px;
+
+    letter-spacing: -0.5px;
+}
+
+.panel-indicator,
+.analysis-state {
+    flex-shrink: 0;
+
+    color: #4e718f;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 1.2px;
+}
+
+.panel-indicator {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+.panel-indicator span {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #218fff;
+
+    box-shadow:
+        0 0 7px rgba(33, 143, 255, 0.8);
+}
+
+
+/* ==========================================================================
+   PASSWORD OUTPUT
+   ========================================================================== */
+
+.password-output {
+    position: relative;
+
+    margin-bottom: 30px;
+
+    padding: 18px;
+
+    border:
+        1px solid rgba(45, 117, 174, 0.28);
+
+    background:
+        rgba(1, 8, 17, 0.85);
+
+    box-shadow:
+        inset 0 0 30px rgba(0, 90, 180, 0.045);
+}
+
+.output-label {
+    margin-bottom: 10px;
+
+    color: #466a89;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+}
+
+.password-row {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.password-value {
+    min-width: 0;
+
+    flex: 1;
+
+    color: #66baff;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size:
+        clamp(15px, 2vw, 20px);
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+
+    word-break: break-all;
+
+    text-shadow:
+        0 0 14px rgba(67, 173, 255, 0.2);
+}
+
+.icon-button {
+    flex:
+        0 0
+        44px;
+
+    display: grid;
+    place-items: center;
+
+    width: 44px;
+    height: 44px;
+
+    cursor: pointer;
+
+    color: #75a4c8;
+
+    border:
+        1px solid rgba(62, 127, 179, 0.3);
+
+    background:
+        rgba(12, 33, 53, 0.6);
+
+    transition:
+        color 160ms ease,
+        border-color 160ms ease,
+        background 160ms ease,
+        transform 160ms ease;
+}
+
+.icon-button:hover {
+    color: #bce4ff;
+
+    border-color:
+        rgba(47, 155, 255, 0.65);
+
+    background:
+        rgba(20, 65, 105, 0.7);
+
+    transform: translateY(-1px);
+}
+
+.copy-icon {
+    font-size: 20px;
+}
+
+.copy-feedback {
+    min-height: 15px;
+
+    margin-top: 6px;
+
+    color: #3ca8ff;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+}
+
+
+/* ==========================================================================
+   CONTROLS
+   ========================================================================== */
+
+.control-group {
+    margin-bottom: 27px;
+}
+
+.control-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 13px;
+
+    color: #6b89a4;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+}
+
+.control-hint {
+    color: #36526c;
+
+    font-size: 7px;
+}
+
+.value-display {
+    min-width: 40px;
+
+    padding: 5px 8px;
+
+    text-align: center;
+
+    color: #55adf4;
+
+    border:
+        1px solid rgba(48, 126, 185, 0.3);
+
+    background:
+        rgba(12, 38, 63, 0.45);
+}
+
+
+/* ==========================================================================
+   RANGE
+   ========================================================================== */
+
+.range-wrapper {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+}
+
+.range-min,
+.range-max {
+    flex: 0 0 auto;
+
+    color: #3f5d76;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+}
+
+input[type="range"] {
+    width: 100%;
+
+    height: 20px;
+
+    margin: 0;
+
+    appearance: none;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 3px;
+
+    border-radius: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1568a9,
+            #1d8de5
+        );
+}
+
+input[type="range"]::-moz-range-track {
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1568a9,
+            #1d8de5
+        );
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+
+    margin-top: -6.5px;
+
+    appearance: none;
+
+    border:
+        2px solid #82cfff;
+
+    border-radius: 50%;
+
+    background: #06182b;
+
+    box-shadow:
+        0 0 12px rgba(35, 147, 255, 0.6);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+
+    border:
+        2px solid #82cfff;
+
+    border-radius: 50%;
+
+    background: #06182b;
+
+    box-shadow:
+        0 0 12px rgba(35, 147, 255, 0.6);
+}
+
+
+/* ==========================================================================
+   CHARACTER OPTIONS
+   ========================================================================== */
+
+.character-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+}
+
+.toggle-option {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    min-height: 62px;
+
+    padding: 11px;
+
+    cursor: pointer;
+
+    border:
+        1px solid rgba(57, 105, 146, 0.22);
+
+    background:
+        rgba(7, 20, 34, 0.6);
+
+    transition:
+        border-color 160ms ease,
+        background 160ms ease,
+        transform 160ms ease;
+}
+
+.toggle-option:hover {
+    border-color:
+        rgba(49, 139, 207, 0.42);
+
+    background:
+        rgba(10, 29, 49, 0.8);
+}
+
+.toggle-option input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.toggle-box {
+    display: grid;
+    place-items: center;
+
+    flex:
+        0 0
+        25px;
+
+    width: 25px;
+    height: 25px;
+
+    border:
+        1px solid rgba(72, 119, 156, 0.45);
+
+    background:
+        #06101d;
+
+    transition:
+        border-color 150ms ease,
+        background 150ms ease,
+        box-shadow 150ms ease;
+}
+
+.toggle-check {
+    opacity: 0;
+
+    color: #dff4ff;
+
+    font-size: 13px;
+
+    transform: scale(0.6);
+
+    transition:
+        opacity 120ms ease,
+        transform 120ms ease;
+}
+
+.toggle-option input:checked + .toggle-box {
+    border-color: #2b9cff;
+
+    background:
+        #0a3150;
+
+    box-shadow:
+        0 0 13px rgba(36, 145, 255, 0.18);
+}
+
+.toggle-option input:checked + .toggle-box .toggle-check {
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+.option-content {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.option-content strong {
+    color: #b8d5ea;
+
+    font-size: 11px;
+}
+
+.option-content small {
+    color: #48657f;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+}
+
+
+/* ==========================================================================
+   GUARANTEE
+   ========================================================================== */
+
+.guarantee-option {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin:
+        0 0
+        24px;
+
+    color: #617e99;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+    cursor: pointer;
+}
+
+.guarantee-option input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.custom-checkbox {
+    position: relative;
+
+    flex:
+        0 0
+        16px;
+
+    width: 16px;
+    height: 16px;
+
+    margin-top: 1px;
+
+    border:
+        1px solid rgba(54, 122, 176, 0.45);
+
+    background: #06101b;
+}
+
+.guarantee-option input:checked + .custom-checkbox {
+    border-color: #2998ee;
+
+    background:
+        #0b3554;
+
+    box-shadow:
+        0 0 9px rgba(42, 152, 238, 0.2);
+}
+
+.guarantee-option input:checked + .custom-checkbox::after {
+    content: "✓";
+
+    position: absolute;
+
+    inset: 0;
+
+    display: grid;
+    place-items: center;
+
+    color: #9cdcff;
+
+    font-size: 10px;
+}
+
+
+/* ==========================================================================
+   GENERATE BUTTON
+   ========================================================================== */
+
+.generate-button {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 58px;
+
+    padding: 14px 18px;
+
+    cursor: pointer;
+
+    color: #e4f6ff;
+
+    border:
+        1px solid rgba(42, 153, 241, 0.75);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(15, 75, 122, 0.7),
+            rgba(5, 39, 68, 0.8)
+        );
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    box-shadow:
+        inset 0 0 25px rgba(33, 143, 255, 0.07),
+        0 0 20px rgba(24, 116, 200, 0.08);
+
+    overflow: hidden;
+
+    transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background 160ms ease;
+}
+
+.generate-button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 60%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(150, 220, 255, 0.09),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left 500ms ease;
+}
+
+.generate-button:hover {
+    transform: translateY(-2px);
+
+    border-color: #57b5ff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(18, 92, 150, 0.85),
+            rgba(7, 50, 85, 0.9)
+        );
+
+    box-shadow:
+        inset 0 0 25px rgba(33, 143, 255, 0.1),
+        0 0 28px rgba(24, 116, 200, 0.15);
+}
+
+.generate-button:hover::before {
+    left: 140%;
+}
+
+.generate-button:active {
+    transform: translateY(0);
+}
+
+.button-prefix,
+.button-suffix {
+    color: #2d9dff;
+}
+
+.generator-note {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 14px;
+
+    color: #3f5c74;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 7px;
+
+    line-height: 1.5;
+
+    letter-spacing: 0.6px;
+}
+
+.generator-note span {
+    color: #248fff;
+}
+
+
+/* ==========================================================================
+   STRENGTH
+   ========================================================================== */
+
+.strength-section {
+    margin-bottom: 28px;
+
+    padding:
+        17px;
+
+    border:
+        1px solid rgba(53, 110, 157, 0.2);
+
+    background:
+        rgba(3, 14, 25, 0.65);
+}
+
+.strength-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 12px;
+
+    color: #597790;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 1.4px;
+}
+
+.strength-header strong {
+    color: #4fb1ff;
+
+    font-size: 9px;
+
+    text-shadow:
+        0 0 9px rgba(64, 173, 255, 0.3);
+}
+
+.strength-meter {
+    height: 5px;
+
+    overflow: hidden;
+
+    background:
+        #091523;
+}
+
+.strength-meter span {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #176ca9,
+            #249cff
+        );
+
+    box-shadow:
+        0 0 14px rgba(36, 156, 255, 0.55);
+
+    transition:
+        width 350ms ease,
+        background 350ms ease;
+}
+
+.strength-description {
+    margin-top: 11px;
+
+    color: #4c6982;
+
+    font-size: 9px;
+}
+
+
+/* ==========================================================================
+   STATS
+   ========================================================================== */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    min-width: 0;
+
+    min-height: 82px;
+
+    padding: 15px;
+
+    border:
+        1px solid rgba(54, 108, 153, 0.2);
+
+    background:
+        rgba(7, 19, 32, 0.55);
+}
+
+.stat-wide {
+    grid-column: 1 / -1;
+}
+
+.stat-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #45647e;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 1.2px;
+}
+
+.stat-card strong {
+    display: block;
+
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+
+    color: #a7d5f3;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size:
+        clamp(14px, 2vw, 18px);
+}
+
+
+/* ==========================================================================
+   BRUTE FORCE
+   ========================================================================== */
+
+.section-title {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 15px;
+
+    color: #63819b;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.section-number {
+    color: #248fff;
+}
+
+.attack-model {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 9px;
+
+    margin-bottom: 9px;
+}
+
+.attack-model > div {
+    padding: 13px;
+
+    border:
+        1px solid rgba(52, 103, 146, 0.18);
+
+    background:
+        rgba(4, 15, 26, 0.6);
+}
+
+.attack-model span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #3f5c75;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+.attack-model strong {
+    display: block;
+
+    color: #82abc8;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 9px;
+}
+
+
+/* ==========================================================================
+   TIME CARD
+   ========================================================================== */
+
+.time-card {
+    padding:
+        18px;
+
+    border:
+        1px solid rgba(44, 127, 188, 0.28);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(7, 32, 54, 0.72),
+            rgba(3, 14, 26, 0.75)
+        );
+
+    box-shadow:
+        inset 0 0 35px rgba(0, 120, 255, 0.035);
+}
+
+.time-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.time-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #47708e;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 1.2px;
+}
+
+.time-value {
+    display: block;
+
+    color: #59b7ff;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size:
+        clamp(13px, 2vw, 18px);
+
+    line-height: 1.3;
+
+    text-shadow:
+        0 0 12px rgba(53, 169, 255, 0.17);
+}
+
+.time-icon {
+    flex:
+        0 0
+        38px;
+
+    display: grid;
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    color: #258fff;
+
+    border:
+        1px solid rgba(42, 143, 229, 0.2);
+
+    background:
+        rgba(9, 38, 63, 0.5);
+
+    font-size: 16px;
+}
+
+.time-divider {
+    height: 1px;
+
+    margin:
+        17px 0;
+
+    background:
+        rgba(57, 110, 150, 0.15);
+}
+
+
+/* ==========================================================================
+   ATTACK NOTE
+   ========================================================================== */
+
+.attack-note {
+    display: flex;
+
+    gap: 9px;
+
+    margin-top: 13px;
+
+    padding: 12px;
+
+    color: #49657d;
+
+    border-left:
+        2px solid rgba(38, 143, 255, 0.4);
+
+    background:
+        rgba(8, 24, 40, 0.35);
+
+    font-size: 8px;
+
+    line-height: 1.55;
+}
+
+.warning-icon {
+    flex: 0 0 auto;
+
+    color: #3e9be0;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-weight: 800;
+}
+
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.site-footer {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    padding-top: 25px;
+
+    color: #344d64;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+.site-footer > div:last-child {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+.footer-separator {
+    margin-inline: 7px;
+
+    color: #21384e !important;
+}
+
+
+/* ==========================================================================
+   NOSCRIPT
+   ========================================================================== */
+
+.noscript-message {
+    position: fixed;
+    inset: 0;
+
+    z-index: 200;
+
+    display: grid;
+    place-items: center;
+
+    padding: 30px;
+
+    background: #02050c;
+
+    color: #65baff;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   MOBILE — FIRST CLASS OPTIMIZATION
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+    .workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .analysis-panel {
+        order: 2;
+    }
+
+    .generator-panel {
+        order: 1;
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    body {
+        background:
+            radial-gradient(
+                circle at 50% -5%,
+                rgba(0, 75, 145, 0.12),
+                transparent 38%
+            ),
+            #030711;
+    }
+
+    .ambient {
+        width: 90vw;
+        height: 90vw;
+
+        filter: blur(65px);
+
+        opacity: 0.15;
+
+        animation-duration: 16s;
+    }
+
+    .grid-overlay {
+        background-size: 34px 34px;
+
+        opacity: 0.1;
+    }
+
+    .scanlines {
+        opacity: 0.02;
+    }
+
+    .app {
+        width: min(
+            100% - 28px,
+            600px
+        );
+
+        padding:
+            18px
+            0
+            max(
+                26px,
+                env(safe-area-inset-bottom)
+            );
+    }
+
+    .site-header {
+        align-items: flex-start;
+
+        padding-bottom: 20px;
+    }
+
+    .brand-subtitle {
+        max-width: 180px;
+
+        line-height: 1.4;
+    }
+
+    .system-status {
+        display: none;
+    }
+
+    .hero {
+        padding:
+            50px 0
+            38px;
+    }
+
+    .hero h1 {
+        font-size:
+            clamp(
+                39px,
+                12vw,
+                58px
+            );
+
+        letter-spacing: -2.5px;
+    }
+
+    .hero-description {
+        margin-top: 19px;
+
+        font-size: 13px;
+
+        line-height: 1.65;
+    }
+
+    .panel {
+        padding: 20px 16px;
+    }
+
+    .panel-header {
+        margin-bottom: 23px;
+    }
+
+    .panel h2 {
+        font-size: 19px;
+    }
+
+    .password-output {
+        padding: 14px;
+
+        margin-bottom: 24px;
+    }
+
+    .password-value {
+        font-size: 14px;
+
+        line-height: 1.65;
+    }
+
+    .icon-button {
+        width: 46px;
+        height: 46px;
+
+        flex-basis: 46px;
+    }
+
+    .character-grid {
+        gap: 7px;
+    }
+
+    .toggle-option {
+        min-height: 64px;
+
+        padding: 10px;
+    }
+
+    .option-content strong {
+        font-size: 10px;
+    }
+
+    .generate-button {
+        min-height: 56px;
+
+        font-size: 10px;
+
+        letter-spacing: 1px;
+    }
+
+    .stats-grid {
+        gap: 7px;
+    }
+
+    .stat-card {
+        min-height: 76px;
+
+        padding: 12px;
+    }
+
+    .attack-model {
+        grid-template-columns: 1fr;
+    }
+
+    .time-card {
+        padding: 15px;
+    }
+
+    .time-value {
+        max-width: 230px;
+    }
+
+    .site-footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+}
+
+
+/* ==========================================================================
+   SMALL PHONES
+   ========================================================================== */
+
+@media (max-width: 390px) {
+
+    .app {
+        width: min(
+            100% - 20px,
+            600px
+        );
+    }
+
+    .hero {
+        padding-top: 42px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .character-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .toggle-option {
+        min-height: 58px;
+    }
+
+    .password-row {
+        align-items: flex-start;
+    }
+
+    .password-value {
+        font-size: 13px;
+    }
+
+    .icon-button {
+        flex-basis: 42px;
+
+        width: 42px;
+        height: 42px;
+    }
+
+    .time-row {
+        align-items: flex-start;
+    }
+
+    .time-icon {
+        display: none;
+    }
+}
+
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
+    .ambient {
+        opacity: 0.12;
+    }
+}
